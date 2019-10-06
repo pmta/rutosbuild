@@ -13,7 +13,7 @@ yes "" | make oldconfig
 if [ $? -ne 0 ]
 then
   echo "Error make config "
-  # Even wihtout generating config it should 
+  # Even without generating config it should 
   # be possible to compite with (old) defaults
   # So not going to exit here
 fi
@@ -40,7 +40,7 @@ fi
 nice -n 19 make -j ${jobs}
 if [ $? -ne 0 ]
 then
-  echo "Build error "
+  echo "Build error"
   exit 1
 else
   echo "Build successful"
