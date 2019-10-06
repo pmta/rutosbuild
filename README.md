@@ -67,7 +67,7 @@ integer number of desired (parallel) jobs.
 The NPROC environment variable defines the number CPUs that should be used for
 compilation.
 
-For eaxample limit used CPUs to 8:
+For example limit used CPUs to 8:
 ```
 [i7 ~]$ docker run --env NPROC=8 pmta/rutosbuild
 Using LOCALBUILDDIR /home/build/RUT/
