@@ -97,10 +97,10 @@ $ cat README
 ############################
 # To manually compile run: 
 # cd $LOCALBUILDDIR
-# ./build_rut.sh
+# /bin/sh ./build_rut.sh
 
 $ cd $LOCALBUILDDIR
-$ ./build_rut.sh
+$ /bin/sh ./build_rut.sh
 Using LOCALBUILDDIR /home/build/RUT/
 Checking 'non-root'... ok.
 Checking 'working-make'... ok.
