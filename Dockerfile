@@ -13,28 +13,27 @@ ENV SOURCEURL="http://wiki.teltonika.lt/gpl/RUT9XX_R_GPL_00.06.04.5.tar.gz"
 ENV LOCALBUILDDIR="/home/${user}/RUT/"
 # ENV NPROC=8
 
-RUN apt-get update && apt-get install -y build-essential curl devscripts gawk gcc-multilib gengetopt gettext git groff file flex libncurses5-dev libssl-dev python2.7 subversion unzip vim-common zlib1g-dev wget
+COPY build_rut.sh /
+COPY readme /
 
-# Create user and group
-RUN addgroup --gid ${GID} ${group}
-RUN useradd -u ${UID} -g ${GID} -d /home/${user} ${user}
+# Prepare build env
+RUN apt-get update && apt-get install -y build-essential curl devscripts gawk \ 
+    gcc-multilib gengetopt gettext git groff file flex libncurses5-dev libssl-dev \
+    python2.7 subversion unzip vim-common zlib1g-dev wget && \
+    addgroup --gid ${GID} ${group} && \
+    useradd -u ${UID} -g ${GID} -d /home/${user} ${user} && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* && \
+    mkdir -p ${LOCALBUILDDIR} && \
+    mv /readme /home/${user}/README && \
+    mv /build_rut.sh ${LOCALBUILDDIR}/ && \
+    chown -R ${user}:${group} /home/${user}
 
-RUN mkdir -p ${LOCALBUILDDIR}
-COPY build_rut.sh ${LOCALBUILDDIR}/
-RUN chmod +x ${LOCALBUILDDIR}/build_rut.sh
-RUN chown -R ${user}:${group} /home/${user}
 
 USER ${user}:${group}
+
 # Fetch sources
 WORKDIR /home/${user}
-RUN curl -sL ${SOURCEURL} -o /home/${user}/RUT9XX_sdk.tar.gz
-RUN tar -xf /home/${user}/RUT9XX_sdk.tar.gz -C ${LOCALBUILDDIR}/
 
-RUN echo "############################" > /home/${user}/README
-RUN echo "# To manually compile run: " >> /home/${user}/README
-RUN echo "# cd \$LOCALBUILDDIR" >> /home/${user}/README
-RUN echo "# ./build_rut.sh" >> /home/${user}/README
-RUN echo "" >> /home/${user}/README
-
-CMD ["/bin/sh", "-c", "cd ${LOCALBUILDDIR};./build_rut.sh"]
+CMD ["/bin/sh", "-c", "cd ${LOCALBUILDDIR};/bin/sh ./build_rut.sh"]
 

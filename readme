@@ -1,0 +1,5 @@
+############################
+# To manually compile run:  
+# cd $LOCALBUILDDIR        
+# ./build_rut.sh            
+

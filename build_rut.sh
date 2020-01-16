@@ -8,6 +8,19 @@ else
   echo "LOCALBUILDDIR not set??"
 fi
 
+curl -L ${SOURCEURL} -o /home/${user}/RUT9XX_sdk.tar.gz 
+if [ $? -ne 0 ]
+then
+  echo "Error downloading sources from ${SOURCEURL} "
+fi
+
+tar -xf /home/${user}/RUT9XX_sdk.tar.gz -C ${LOCALBUILDDIR}/
+if [ $? -ne 0 ]
+then
+  echo "Error extracting sources to ${LOCALBUILDDIR}/ "
+fi
+
+
 # configure with old settings (defaults)
 yes "" | make oldconfig
 if [ $? -ne 0 ]
