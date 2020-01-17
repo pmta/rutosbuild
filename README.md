@@ -104,7 +104,7 @@ Build can be started manually with "build_rut.sh" script.
 ```
 [xeon ~]$ docker run -it pmta/rutosbuild sh
 $ ls
-README	RUT  RUT9XX_sdk.tar.gz
+README	RUT  
 
 $ cat README
 ############################
