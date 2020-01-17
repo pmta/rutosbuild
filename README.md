@@ -36,7 +36,13 @@ Example output (with lots of compilation output removed)
 
 ```
 [xeon ~]$ time docker run pmta/rutosbuild 
+:
 Using LOCALBUILDDIR /home/build/RUT/
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   194  100   194    0     0   1644      0 --:--:-- --:--:-- --:--:--  1644
+100  394M  100  394M    0     0  22.4M      0  0:00:17  0:00:17 --:--:-- 24.4M
+tar: Removing leading `/' from member names
 Checking 'non-root'... ok.
 Checking 'working-make'... ok.
 :
@@ -70,7 +76,14 @@ compilation.
 For example limit used CPUs to 8:
 ```
 [i7 ~]$ docker run --env NPROC=8 pmta/rutosbuild
+:
 Using LOCALBUILDDIR /home/build/RUT/
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100   194  100   194    0     0   1644      0 --:--:-- --:--:-- --:--:--  1644
+100  394M  100  394M    0     0  22.4M      0  0:00:17  0:00:17 --:--:-- 24.4M
+tar: Removing leading `/' from member names
+
 Checking 'non-root'... ok.
 Checking 'working-make'... ok.
 :
